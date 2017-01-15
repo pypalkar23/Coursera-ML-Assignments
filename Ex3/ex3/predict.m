@@ -31,9 +31,17 @@ A=[ones(m,1) A];
 for i=1:m,
     hTheta(i,:)=A(i,:)*(Theta2');
     hTheta(i,:)=sigmoid(hTheta(i,:));
-    [val,ind]=max(hTheta(i,:),[],2);
-    p(i)=ind;
+    %[val,ind]=max(hTheta(i,:),[],2);
+    %p(i)=ind;
 end;
+
+for i=1:m,
+j=mod(y(i),10)+1;
+tempY(i,j)=1;
+end;
+
+innersum=sum(y.*log(hTheta)-(1-y).*log(1-hTheta));
+J=(innersum)/5000;
 
 
 
